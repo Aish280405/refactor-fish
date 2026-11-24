@@ -32,31 +32,31 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Implement a syntactic re-parse check and a shared `safeApply` wrapper returning `{ ok: false, error: { reason } }` on edit failure or unparseable output, never mutating the input Position
     - _Requirements: 4.2, 4.5, 8.6, 12.1, 12.4, 12.5_
 
-- [ ] 3. Implement the Recording format, parser, and printer
+- [x] 3. Implement the Recording format, parser, and printer
   - [x] 3.1 Implement Recording types, parser, and printer
     - Define `Recording`, `MoveRecord`, `BlunderRecord`, `LineRecord`, `CoverageInfo`, `SearchSettings`, `ProgressEventRecord`
     - Implement `RecordingParser.parse` validating in order: JSON syntax, missing field (in design field order), wrong type, supported version; return structured `RecordingParseError`
     - Implement `RecordingPrinter.print` with stable key order and `formatVersion: 1`
     - _Requirements: 16.1, 16.2, 16.4, 16.5, 16.6, 16.7, 16.9_
 
-  - [~] 3.2 Write property test for malformed JSON rejection
+  - [x] 3.2 Write property test for malformed JSON rejection
     - **Property 46: Recording parser rejects malformed JSON**
     - **Validates: Requirements 16.4**
 
-  - [~] 3.3 Write property test for first-missing-field reporting
+  - [x] 3.3 Write property test for first-missing-field reporting
     - **Property 47: Recording parser reports first missing required field**
     - **Validates: Requirements 16.5**
 
-  - [~] 3.4 Write property test for wrong-type field reporting
+  - [x] 3.4 Write property test for wrong-type field reporting
     - **Property 48: Recording parser reports wrong-type fields**
     - **Validates: Requirements 16.6**
 
-  - [~] 3.5 Write property test for Recording round-trip
+  - [x] 3.5 Write property test for Recording round-trip
     - **Property 49: Recording round-trip**
     - Use at least 100 runs, including zero Blunders and an empty Best_Line
     - **Validates: Requirements 16.7, 16.8, 24.5**
 
-  - [~] 3.6 Write property test for unsupported format versions
+  - [x] 3.6 Write property test for unsupported format versions
     - **Property 50: Recording parser rejects unsupported versions**
     - **Validates: Requirements 16.9**
 
