@@ -30,6 +30,12 @@ describe("eval bar", () => {
     expect(evalBarView(3, -10).fill).toBe(1);
     expect(evalBarView(-1.26, -10).label).toBe("-1.3");
   });
+
+  it("rounds ties half away from zero using printed decimal digits", () => {
+    expect(evalBarView(-98.25, -100).label).toBe("-98.3");
+    expect(evalBarView(1.45, -10).label).toBe("1.5");
+    expect(evalBarView(-0.04, -10).label).toBe("0.0");
+  });
 });
 
 describe("navigation", () => {

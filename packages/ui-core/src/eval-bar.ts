@@ -14,10 +14,31 @@ export function clampScore(score: number, originalScore: number): number {
   return Math.min(0, Math.max(min, score));
 }
 
+/**
+ * Round to 1 decimal place, half away from zero, based on the number's printed
+ * decimal digits (`String(x)`, the shortest round-trip form). Uses BigInt
+ * arithmetic so binary float drift cannot affect ties (1.45 -> "1.5",
+ * -98.25 -> "-98.3"). A zero result is always "0.0", never "-0.0".
+ * Non-finite input falls back to `toFixed(1)` ("NaN", "Infinity", "-Infinity").
+ */
 export function formatScore(score: number): string {
-  const rounded = Math.round(score * 10) / 10;
-  // Avoid "-0.0".
-  return (Object.is(rounded, -0) ? 0 : rounded).toFixed(1);
+  if (!Number.isFinite(score)) return score.toFixed(1);
+  const match = /^(\d+)(?:\.(\d+))?(?:e([+-]\d+))?$/.exec(String(Math.abs(score)));
+  if (!match) return score.toFixed(1);
+  const fracPart = match[2] ?? "";
+  const digits = BigInt(match[1]! + fracPart);
+  // |score| = digits * 10^(exp - fracLen); we want n = round(|score| * 10).
+  const shift = Number(match[3] ?? "0") - fracPart.length + 1;
+  let n: bigint;
+  if (shift >= 0) {
+    n = digits * 10n ** BigInt(shift);
+  } else {
+    const d = 10n ** BigInt(-shift);
+    n = digits / d;
+    if (2n * (digits % d) >= d) n += 1n;
+  }
+  const sign = score < 0 && n > 0n ? "-" : "";
+  return `${sign}${n / 10n}.${n % 10n}`;
 }
 
 export function evalBarView(score: number, originalScore: number): EvalBarView {
