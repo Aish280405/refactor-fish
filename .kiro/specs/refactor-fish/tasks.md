@@ -250,7 +250,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Implement Relevant_Test_File discovery
     - _Requirements: 2.1, 2.4, 2.7, 3.1, 3.4, 10.1, 10.5, 10.6, 10.7, 10.8_
 
-  - [~] 13.3 Implement coverage calculation and warning text
+  - [x] 13.3 Implement coverage calculation and warning text
     - `computeCoverage(executed, total)` returns percent rounded to one decimal or unknown when total is 0
     - Shared `coverageMessage(coverage)` producing the warning text (below 60.0) or unknown text, used by both CLI and Web UI
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
