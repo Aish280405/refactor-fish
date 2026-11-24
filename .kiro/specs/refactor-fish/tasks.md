@@ -112,18 +112,18 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Property 13: Guard_Clause transform shape correctness**
     - **Validates: Requirements 6.2, 6.3, 6.4**
 
-- [ ] 7. Implement Simplify_Boolean
+- [x] 7. Implement Simplify_Boolean
   - [x] 7.1 Implement the Simplify_Boolean generator and apply
     - Cover `x === true`, `!!x` in boolean contexts, and `if (c) return true; else return false;` (with or without braces)
     - Use the type checker; generate a candidate only when the operand type is exactly `boolean` (exclude `any`, `unknown`, unions with non-boolean members)
     - One candidate per rewrite site; applying one changes only its site
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5_
 
-  - [~] 7.2 Write property test for exact-boolean rewriting and site locality
+  - [x] 7.2 Write property test for exact-boolean rewriting and site locality
     - **Property 14: Simplify_Boolean rewrite-iff-exact-boolean-type with site locality**
     - **Validates: Requirements 7.1, 7.2, 7.3, 7.4, 7.5**
 
-- [ ] 8. Implement Extract_Function
+- [x] 8. Implement Extract_Function
   - [x] 8.1 Implement the Extract_Function generator and apply
     - Eligibility: at least 5 contiguous statements directly in one block; free identifiers resolvable; no non-final `return`; no `break`/`continue` targeting outside; no `await` when the enclosing function is not async
     - Apply: new function with one parameter per outer variable read (order of first read), call passing them, return and assign modified outer variables and value-yielding returns
@@ -131,20 +131,20 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Reject and leave the Position unchanged when the result does not parse
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6_
 
-  - [~] 8.2 Write property test for the eligibility predicate
+  - [x] 8.2 Write property test for the eligibility predicate
     - **Property 15: Extract_Function eligibility predicate**
     - **Validates: Requirements 8.1, 8.5**
 
-  - [~] 8.3 Write property test for call-site wiring
+  - [x] 8.3 Write property test for call-site wiring
     - **Property 16: Extract_Function call-site wiring correctness**
     - **Validates: Requirements 8.2**
 
-  - [~] 8.4 Write property test for value propagation preservation
+  - [x] 8.4 Write property test for value propagation preservation
     - **Property 17: Extract_Function value propagation preservation**
     - Execute pre- and post-extraction code in a harness and compare outer variable values
     - **Validates: Requirements 8.3**
 
-  - [~] 8.5 Write property test for name uniqueness
+  - [x] 8.5 Write property test for name uniqueness
     - **Property 18: Extract_Function name uniqueness**
     - **Validates: Requirements 8.4**
 
