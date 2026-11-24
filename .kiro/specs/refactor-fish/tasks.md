@@ -21,19 +21,19 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Document how to re-run with `{ seed, path }` for reproduction (fast-check built-in behavior)
     - _Requirements: 24.1, 24.2, 24.3, 24.4, 24.5, 24.6, 24.7_
 
-- [ ] 2. Implement core types and the AST Editor
+- [x] 2. Implement core types and the AST Editor
   - [x] 2.1 Define core types and content hashing
     - In `packages/engine/src/types.ts`, define `Position`, `Candidate`, `ApplyResult`, `MoveKind`, `MoveGenerator`, `GeneratorContext`, `TestOutcome`, `TestFailure`, `Metrics`, `Annotation`, `DiscardLogEntry`
     - Implement `contentHash(sourceText)` using SHA-256
     - _Requirements: 11.1, 12.1_
 
-  - [~] 2.2 Implement the AST Editor wrapper
+  - [x] 2.2 Implement the AST Editor wrapper
     - Implement `AstEditor.load(position)` creating a fresh in-memory ts-morph `Project` per call, exposing `getSourceFile()`, `getTypeChecker()`, `commit()`
     - Implement a syntactic re-parse check and a shared `safeApply` wrapper returning `{ ok: false, error: { reason } }` on edit failure or unparseable output, never mutating the input Position
     - _Requirements: 4.2, 4.5, 8.6, 12.1, 12.4, 12.5_
 
 - [ ] 3. Implement the Recording format, parser, and printer
-  - [~] 3.1 Implement Recording types, parser, and printer
+  - [x] 3.1 Implement Recording types, parser, and printer
     - Define `Recording`, `MoveRecord`, `BlunderRecord`, `LineRecord`, `CoverageInfo`, `SearchSettings`, `ProgressEventRecord`
     - Implement `RecordingParser.parse` validating in order: JSON syntax, missing field (in design field order), wrong type, supported version; return structured `RecordingParseError`
     - Implement `RecordingPrinter.print` with stable key order and `formatVersion: 1`
@@ -225,7 +225,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 13.10**
 
 - [ ] 12. Implement the Annotator
-  - [~] 12.1 Implement `annotate` and move-line formatting
+  - [x] 12.1 Implement `annotate` and move-line formatting
     - `annotate(gain, range)`: `!!` at or above 15% of range, `!` at 5% to below 15%, `?!` below 5% or when range is 0; Blunders are `??` upstream
     - `formatMoveLine(index, displayName, annotation)` returns `"<n>. <Move name> <Annotation>"`
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7_
@@ -239,11 +239,11 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 15.7**
 
 - [ ] 13. Implement the Test Runner, Test Cache, and coverage
-  - [~] 13.1 Implement `TestCache`
+  - [x] 13.1 Implement `TestCache`
     - In-memory map keyed by Content_Hash storing the full `TestOutcome`; one instance per analysis run, no global or on-disk state
     - _Requirements: 11.2, 11.3, 11.5_
 
-  - [~] 13.2 Implement `TestRunner` using the Vitest programmatic API
+  - [x] 13.2 Implement `TestRunner` using the Vitest programmatic API
     - Materialize the candidate into a temp directory mirroring project structure (symlinked `node_modules`), run only the Relevant_Test_File, race against a timeout (default 60 s, configurable for the 300 s apply run), kill on expiry, clean up in `finally`
     - Map results to `passed`, `failed` (with test names and messages), `error` (including zero tests collected), `timeout`
     - Implement `runWithCoverage` using `@vitest/coverage-v8` JSON output; never touch the real Target_File
