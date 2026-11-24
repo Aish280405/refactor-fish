@@ -15,7 +15,9 @@ export function computeCoverage(executed: number, total: number): CoverageInfo {
   if (!Number.isFinite(executed) || !Number.isFinite(total) || total <= 0) {
     return { percent: null, unknown: true, belowThreshold: false };
   }
-  const percent = Math.round((executed / total) * 100 * 10) / 10;
+  // Scale before dividing: (executed * 1000) / total is exact at .5 ties, unlike
+  // (executed / total) * 1000, which can land just below (e.g. 11/2000 -> 5.4999...).
+  const percent = Math.round((executed * 1000) / total) / 10;
   return { percent, unknown: false, belowThreshold: percent < COVERAGE_WARNING_THRESHOLD };
 }
 
