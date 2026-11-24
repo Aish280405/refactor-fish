@@ -61,7 +61,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 16.9**
 
 - [ ] 4. Implement Remove_Unused
-  - [~] 4.1 Implement the unused-declaration classifier and Remove_Unused generator
+  - [x] 4.1 Implement the unused-declaration classifier and Remove_Unused generator
     - Implement a shared classifier: a declaration is unused iff it is not exported and has no reference outside its own body
     - Generate exactly one candidate per unused import, variable, or function, in source order
     - Implement `apply` removing only the target declaration; remove a single import specifier when the import has more than one, the whole import when it has one
@@ -85,7 +85,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 4.6**
 
 - [ ] 5. Implement Inline_Variable
-  - [~] 5.1 Implement the Inline_Variable generator and apply
+  - [x] 5.1 Implement the Inline_Variable generator and apply
     - Eligibility: single-identifier `const` with initializer, exactly one reference, not exported, no side-effecting expression or reassignment of read variables on the path, and no side-effecting initializer when the reference is in a nested function, loop, or conditional branch
     - Apply: substitute with parentheses where precedence requires, expand shorthand `{ x }` to `{ x: <init> }`, delete only the inlined declarator
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
@@ -99,7 +99,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 5.2**
 
 - [ ] 6. Implement Guard_Clause
-  - [~] 6.1 Implement the Guard_Clause generator and apply
+  - [x] 6.1 Implement the Guard_Clause generator and apply
     - Eligibility: `if` without `else`, followed by nothing or a single `return`; no candidate when followed by nothing in a non-void function whose type excludes `undefined`; no candidate on name collision when unwrapping
     - Apply: negated condition with early `return;` (void), the following return's expression, or `return undefined;`, then unwrapped body statements
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
@@ -113,7 +113,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 6.2, 6.3, 6.4**
 
 - [ ] 7. Implement Simplify_Boolean
-  - [~] 7.1 Implement the Simplify_Boolean generator and apply
+  - [x] 7.1 Implement the Simplify_Boolean generator and apply
     - Cover `x === true`, `!!x` in boolean contexts, and `if (c) return true; else return false;` (with or without braces)
     - Use the type checker; generate a candidate only when the operand type is exactly `boolean` (exclude `any`, `unknown`, unions with non-boolean members)
     - One candidate per rewrite site; applying one changes only its site
@@ -124,7 +124,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 7.1, 7.2, 7.3, 7.4, 7.5**
 
 - [ ] 8. Implement Extract_Function
-  - [~] 8.1 Implement the Extract_Function generator and apply
+  - [x] 8.1 Implement the Extract_Function generator and apply
     - Eligibility: at least 5 contiguous statements directly in one block; free identifiers resolvable; no non-final `return`; no `break`/`continue` targeting outside; no `await` when the enclosing function is not async
     - Apply: new function with one parameter per outer variable read (order of first read), call passing them, return and assign modified outer variables and value-yielding returns
     - Name selection: base name with lowest integer suffix from 2 that avoids every identifier in the scope chain and the block
