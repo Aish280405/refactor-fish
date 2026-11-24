@@ -60,7 +60,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Property 50: Recording parser rejects unsupported versions**
     - **Validates: Requirements 16.9**
 
-- [ ] 4. Implement Remove_Unused
+- [x] 4. Implement Remove_Unused
   - [x] 4.1 Implement the unused-declaration classifier and Remove_Unused generator
     - Implement a shared classifier: a declaration is unused iff it is not exported and has no reference outside its own body
     - Generate exactly one candidate per unused import, variable, or function, in source order
@@ -80,35 +80,35 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Use at least 100 runs
     - **Validates: Requirements 4.4, 24.3**
 
-  - [~] 4.5 Write property test for import specifier granularity
+  - [x] 4.5 Write property test for import specifier granularity
     - **Property 9: Import specifier removal granularity**
     - **Validates: Requirements 4.6**
 
-- [ ] 5. Implement Inline_Variable
+- [x] 5. Implement Inline_Variable
   - [x] 5.1 Implement the Inline_Variable generator and apply
     - Eligibility: single-identifier `const` with initializer, exactly one reference, not exported, no side-effecting expression or reassignment of read variables on the path, and no side-effecting initializer when the reference is in a nested function, loop, or conditional branch
     - Apply: substitute with parentheses where precedence requires, expand shorthand `{ x }` to `{ x: <init> }`, delete only the inlined declarator
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
 
-  - [~] 5.2 Write property test for the eligibility predicate
+  - [x] 5.2 Write property test for the eligibility predicate
     - **Property 10: Inline_Variable eligibility predicate**
     - **Validates: Requirements 5.1, 5.3, 5.4, 5.5**
 
-  - [~] 5.3 Write property test for substitution correctness
+  - [x] 5.3 Write property test for substitution correctness
     - **Property 11: Inline_Variable substitution correctness**
     - **Validates: Requirements 5.2**
 
-- [ ] 6. Implement Guard_Clause
+- [x] 6. Implement Guard_Clause
   - [x] 6.1 Implement the Guard_Clause generator and apply
     - Eligibility: `if` without `else`, followed by nothing or a single `return`; no candidate when followed by nothing in a non-void function whose type excludes `undefined`; no candidate on name collision when unwrapping
     - Apply: negated condition with early `return;` (void), the following return's expression, or `return undefined;`, then unwrapped body statements
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
 
-  - [~] 6.2 Write property test for the eligibility predicate
+  - [x] 6.2 Write property test for the eligibility predicate
     - **Property 12: Guard_Clause eligibility predicate**
     - **Validates: Requirements 6.1, 6.5, 6.6**
 
-  - [~] 6.3 Write property test for transform shape correctness
+  - [x] 6.3 Write property test for transform shape correctness
     - **Property 13: Guard_Clause transform shape correctness**
     - **Validates: Requirements 6.2, 6.3, 6.4**
 

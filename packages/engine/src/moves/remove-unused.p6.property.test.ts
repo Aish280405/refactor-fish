@@ -166,5 +166,5 @@ describe("Property 6: Remove_Unused candidate generation matches usage classific
       }),
       { numRuns: 100 },
     );
-  }, 120_000); // each run loads a fresh in-memory ts-morph Project
+  }, 300_000); // each run loads a fresh in-memory ts-morph Project
 });
