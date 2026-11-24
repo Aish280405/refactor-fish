@@ -1,0 +1,22 @@
+{
+  "name": "refactor-fish-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc -b packages/engine packages/ui-core packages/cli packages/web packages/mcp",
+    "typecheck": "tsc -b --noEmit packages/engine packages/ui-core packages/cli packages/web packages/mcp",
+    "test": "vitest --run",
+    "test:coverage": "vitest --run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^5.1.1",
+    "fast-check": "^4.11.0",
+    "ts-morph": "^28.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^5.1.1"
+  }
+}

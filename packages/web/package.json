@@ -1,0 +1,14 @@
+{
+  "name": "@refactor-fish/web",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@refactor-fish/ui-core": "0.1.0"
+  },
+  "devDependencies": {
+    "vitest": "^5.1.1"
+  }
+}

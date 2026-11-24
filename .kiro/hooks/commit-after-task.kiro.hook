@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "name": "Verify and Commit After Task",
+  "description": "After each spec task completes, build and run tests, fix any failures, then commit and push to GitHub only if everything passes.",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A spec task just completed. Verify it and commit it, following these steps in order:\n1. Run the project's type check/build (npm run build) and the test suite in single-run mode (npx vitest --run). Check get_diagnostics on the files changed.\n2. If anything fails, fix the cause and re-run. Do not commit while any build, type or test failure remains. If you can't fix it, stop and tell the user what is failing instead of committing.\n3. When everything passes, run git status and review the changes. Don't stage secrets, node_modules, or build output that .gitignore excludes.\n4. Stage the changes, commit with a concise conventional message that names the completed task (e.g. \"feat: implement task 2.1 - <task name>\"), and push to the current branch's remote with git push. If no remote or upstream is configured, or the push fails on authentication, don't try to work around it. Report it to the user.\n5. Report the commit hash and the test result in one or two sentences."
+  },
+  "workspaceFolderName": "refactor-fish",
+  "shortName": "commit-after-task"
+}

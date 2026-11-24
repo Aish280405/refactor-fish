@@ -1,0 +1,16 @@
+{
+  "name": "@refactor-fish/mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@refactor-fish/engine": "0.1.0"
+  },
+  "devDependencies": {
+    "vitest": "^5.1.1"
+  }
+}
