@@ -224,21 +224,21 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Property 38: Evaluation determinism**
     - **Validates: Requirements 13.10**
 
-- [ ] 12. Implement the Annotator
+- [x] 12. Implement the Annotator
   - [x] 12.1 Implement `annotate` and move-line formatting
     - `annotate(gain, range)`: `!!` at or above 15% of range, `!` at 5% to below 15%, `?!` below 5% or when range is 0; Blunders are `??` upstream
     - `formatMoveLine(index, displayName, annotation)` returns `"<n>. <Move name> <Annotation>"`
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7_
 
-  - [~] 12.2 Write property test for annotation correctness
+  - [x] 12.2 Write property test for annotation correctness
     - **Property 44: Annotation function correctness**
     - **Validates: Requirements 15.1, 15.2, 15.3, 15.4, 15.5, 15.6**
 
-  - [~] 12.3 Write property test for move line formatting
+  - [x] 12.3 Write property test for move line formatting
     - **Property 45: Move line formatting**
     - **Validates: Requirements 15.7**
 
-- [ ] 13. Implement the Test Runner, Test Cache, and coverage
+- [x] 13. Implement the Test Runner, Test Cache, and coverage
   - [x] 13.1 Implement `TestCache`
     - In-memory map keyed by Content_Hash storing the full `TestOutcome`; one instance per analysis run, no global or on-disk state
     - _Requirements: 11.2, 11.3, 11.5_
@@ -255,15 +255,15 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Shared `coverageMessage(coverage)` producing the warning text (below 60.0) or unknown text, used by both CLI and Web UI
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
 
-  - [~] 13.4 Write property test for coverage percentage formula
+  - [x] 13.4 Write property test for coverage percentage formula
     - **Property 4: Coverage percentage formula correctness**
     - **Validates: Requirements 3.1, 3.4, 3.5**
 
-  - [~] 13.5 Write property test for the coverage warning threshold
+  - [x] 13.5 Write property test for the coverage warning threshold
     - **Property 5: Coverage warning threshold**
     - **Validates: Requirements 3.2, 3.3**
 
-  - [~] 13.6 Write property test for Target_File on-disk immutability
+  - [x] 13.6 Write property test for Target_File on-disk immutability
     - **Property 23: Target_File on-disk immutability across Test_Runner outcomes**
     - **Validates: Requirements 10.6**
 
