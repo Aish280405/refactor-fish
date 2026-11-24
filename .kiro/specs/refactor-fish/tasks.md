@@ -267,7 +267,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Property 23: Target_File on-disk immutability across Test_Runner outcomes**
     - **Validates: Requirements 10.6**
 
-  - [~] 13.7 Write unit tests for the Test Runner
+  - [x] 13.7 Write unit tests for the Test Runner
     - A run over 60 s is killed and classified `timeout`; a missing dependency yields `error`; zero tests collected yields `error`; temp directory removed after failure
     - _Requirements: 10.5, 10.7, 10.8, 2.7_
 
@@ -287,7 +287,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 11.2, 11.3, 11.4, 11.6**
 
 - [ ] 15. Implement LLM-suggested moves
-  - [~] 15.1 Implement `LLMProvider` interface and `LLMMoveGenerator`
+  - [x] 15.1 Implement `LLMProvider` interface and `LLMMoveGenerator`
     - One request per expansion for at most 5 proposals, 30 s timeout, no retry; payload contains only the current Position's source text
     - Discard unparseable proposals and empty or no-op proposals with discard-log entries; on provider error or timeout, return no LLM candidates and record the Position and failure kind
     - With no provider configured, send no requests
@@ -367,7 +367,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 19. Implement the Apply flow
-  - [~] 19.1 Implement the apply pipeline
+  - [x] 19.1 Implement the apply pipeline
     - Strict order: freshness check (byte-equal to original Position) → Relevant_Test_File run on the Position to write (300 s timeout) → write via temp file and atomic rename
     - Support "Apply best line" (final Position, move count L) and "Apply up to selected move" (`sourceAfter` of index i, move count i + 1); "Reject" leaves file untouched
     - Return distinct results: file-changed, tests failed, could not run, timed out, write failed (original content preserved)
@@ -390,7 +390,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - _Requirements: 21.4, 21.9_
 
 - [ ] 20. Implement shared UI view-model logic (`packages/ui-core`)
-  - [~] 20.1 Implement pure view-model modules
+  - [x] 20.1 Implement pure view-model modules
     - Eval bar scale (clamp to [originalScore, 0], label to 1 decimal), move navigation (previous, next, jump to end, disabled states), no-textual-change detection, line diff, metrics change formatting and marks (`improved`/`worsened`/`unchanged` by text/symbol), missing-metrics `"unavailable"` handling, blunder log view-model with empty-message indicator, move list formatting
     - _Requirements: 17.2, 17.3, 18.1, 18.2, 18.3, 18.4, 18.5, 18.6, 18.7, 18.8, 18.9, 19.1, 19.3, 19.4, 19.5, 19.6, 20.1, 20.2, 20.3, 20.4_
 
@@ -419,7 +419,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 20.3**
 
 - [ ] 21. Implement the CLI and local web server
-  - [~] 21.1 Implement argument parsing and validation
+  - [x] 21.1 Implement argument parsing and validation
     - Parse `analyze <file>` and `--depth`; reject missing argument (usage on stderr), missing file (names path), non-`.ts`/`.tsx` extension, parse errors (path, line, column), and depth other than integer 3 or 4 (states accepted range); all exit non-zero without starting Engine or Web UI
     - _Requirements: 1.3, 1.4, 1.5, 1.8, 14.4, 14.5_
 
