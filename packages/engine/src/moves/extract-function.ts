@@ -182,6 +182,10 @@ interface OuterVar {
   name: string;
   decl: ts.Node;
   firstPos: number;
+  /** Position of the first read (including `+=`, `++`), or Infinity if never read. */
+  firstRead: number;
+  /** Position of the first write, or Infinity if never written. */
+  firstWrite: number;
   read: boolean;
   written: boolean;
   /** Written and never read. */
@@ -311,13 +315,16 @@ function analyzeWindow(
       failure = `identifier '${n.text}' cannot be passed as an argument`;
       return false;
     }
+    const pos = order++;
     let entry = outer.get(sym);
     if (!entry) {
       entry = {
         symbol: sym,
         name: n.text,
         decl,
-        firstPos: order++,
+        firstPos: pos,
+        firstRead: Infinity,
+        firstWrite: Infinity,
         read: false,
         written: false,
         firstPureWrite: false,
@@ -325,8 +332,14 @@ function analyzeWindow(
       outer.set(sym, entry);
     }
     const wk = writeKind(n);
-    if (wk === "none" || wk === "rw") entry.read = true;
-    if (wk === "pure" || wk === "rw") entry.written = true;
+    if (wk === "none" || wk === "rw") {
+      entry.read = true;
+      if (pos < entry.firstRead) entry.firstRead = pos;
+    }
+    if (wk === "pure" || wk === "rw") {
+      entry.written = true;
+      if (pos < entry.firstWrite) entry.firstWrite = pos;
+    }
     return true;
   });
   if (failure) return { reason: failure };
@@ -367,7 +380,14 @@ function analyzeWindow(
         getSym(s.expression.left) === v.symbol,
     );
   for (const v of vars) v.firstPureWrite = v.written && !v.read && unconditionalOverwrite(v);
-  const params = vars.filter((v) => v.read || (v.written && !v.firstPureWrite));
+  // Parameter order (Requirement 8.2): read variables by first read, then
+  // write-only (conditionally written) variables by first write.
+  const params = [
+    ...vars.filter((v) => v.read).sort((a, b) => a.firstRead - b.firstRead),
+    ...vars
+      .filter((v) => !v.read && v.written && !v.firstPureWrite)
+      .sort((a, b) => a.firstWrite - b.firstWrite),
+  ];
   const assigned = vars.filter((v) => v.written);
   const localOnly = vars.filter((v) => v.firstPureWrite);
 
