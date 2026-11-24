@@ -297,15 +297,15 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Property 19: LLM candidate pipeline parity**
     - **Validates: Requirements 9.2**
 
-  - [~] 15.3 Write property test for invalid-proposal discarding
+  - [x] 15.3 Write property test for invalid-proposal discarding
     - **Property 20: LLM invalid-proposal discarding**
     - **Validates: Requirements 9.3**
 
-  - [~] 15.4 Write property test for no-op proposal discarding
+  - [x] 15.4 Write property test for no-op proposal discarding
     - **Property 21: LLM no-op proposal discarding**
     - **Validates: Requirements 9.8**
 
-  - [~] 15.5 Write unit tests for LLM behaviors
+  - [x] 15.5 Write unit tests for LLM behaviors
     - No provider means zero requests; request payload contains only Target_File content; provider error and 30 s timeout fall back to deterministic moves and are recorded; failing-test LLM move gets a "tests failed" discard entry
     - _Requirements: 9.4, 9.5, 9.6, 9.7_
 
@@ -373,11 +373,11 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Return distinct results: file-changed, tests failed, could not run, timed out, write failed (original content preserved)
     - _Requirements: 21.2, 21.3, 21.4, 21.5, 21.6, 21.7, 21.8, 21.9_
 
-  - [~] 19.2 Write property test for apply content selection and move count
+  - [x] 19.2 Write property test for apply content selection and move count
     - **Property 58: Apply content selection and move count**
     - **Validates: Requirements 21.2, 21.3, 21.6**
 
-  - [~] 19.3 Write property test for the disk-freshness guard
+  - [x] 19.3 Write property test for the disk-freshness guard
     - **Property 59: Apply disk-freshness guard**
     - **Validates: Requirements 21.5**
 

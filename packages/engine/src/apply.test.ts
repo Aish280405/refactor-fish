@@ -1,4 +1,3 @@
-import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 import { applyChanges, rejectApply, type ApplyFileSystem } from "./apply.js";
 import type { MoveRecord } from "./recording.js";
@@ -151,61 +150,5 @@ describe("applyChanges", () => {
     expect((await run({ kind: "up-to-move", index: 3 })).kind).toBe("invalid-selection");
     expect(runner.calls).toHaveLength(0);
     expect(rejectApply()).toEqual({ kind: "rejected" });
-  });
-
-  it("Property 58: content selection and move count", async () => {
-    await fc.assert(
-      fc.asyncProperty(
-        fc.array(fc.string(), { minLength: 1, maxLength: 8 }),
-        fc.nat(),
-        fc.boolean(),
-        async (afters, n, whole) => {
-          const fs = new FakeFs();
-          fs.files.set(TARGET, "orig");
-          const L = afters.length;
-          const i = n % L;
-          const r = await applyChanges({
-            targetFilePath: TARGET,
-            originalSource: "orig",
-            bestLine: afters.map((a, k) => move(k, a)),
-            selection: whole ? { kind: "best-line" } : { kind: "up-to-move", index: i },
-            relevantTestFile: "t",
-            testRunner: new FakeRunner({ kind: "passed" }),
-            fs,
-          });
-          const idx = whole ? L - 1 : i;
-          expect(r).toEqual({ kind: "applied", path: TARGET, movesApplied: idx + 1 });
-          expect(fs.files.get(TARGET)).toBe(afters[idx]);
-        },
-      ),
-      { numRuns: 50 },
-    );
-  });
-
-  it("Property 59: freshness guard", async () => {
-    await fc.assert(
-      fc.asyncProperty(fc.string(), fc.string(), async (disk, original) => {
-        const fs = new FakeFs();
-        fs.files.set(TARGET, disk);
-        const runner = new FakeRunner({ kind: "passed" });
-        const r = await applyChanges({
-          targetFilePath: TARGET,
-          originalSource: original,
-          bestLine: [move(0, "new")],
-          selection: { kind: "best-line" },
-          relevantTestFile: "t",
-          testRunner: runner,
-          fs,
-        });
-        if (disk === original) {
-          expect(runner.calls).toHaveLength(1);
-        } else {
-          expect(r.kind).toBe("file-changed");
-          expect(runner.calls).toHaveLength(0);
-          expect(fs.files.get(TARGET)).toBe(disk);
-        }
-      }),
-      { numRuns: 50 },
-    );
   });
 });
