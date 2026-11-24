@@ -67,15 +67,15 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Implement `apply` removing only the target declaration; remove a single import specifier when the import has more than one, the whole import when it has one
     - _Requirements: 4.1, 4.2, 4.3, 4.5, 4.6_
 
-  - [~] 4.2 Write property test for candidate generation
+  - [x] 4.2 Write property test for candidate generation
     - **Property 6: Remove_Unused candidate generation matches usage classification**
     - **Validates: Requirements 4.1, 4.3**
 
-  - [~] 4.3 Write property test for application locality and validity
+  - [x] 4.3 Write property test for application locality and validity
     - **Property 7: Remove_Unused application locality and validity**
     - **Validates: Requirements 4.2**
 
-  - [~] 4.4 Write property test for referenced-symbol preservation
+  - [x] 4.4 Write property test for referenced-symbol preservation
     - **Property 8: Referenced-symbol preservation under Remove_Unused**
     - Use at least 100 runs
     - **Validates: Requirements 4.4, 24.3**
@@ -149,7 +149,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Validates: Requirements 8.4**
 
 - [ ] 9. Assemble the Deterministic Move Generator
-  - [~] 9.1 Implement `DeterministicMoveGenerator`
+  - [x] 9.1 Implement `DeterministicMoveGenerator`
     - Concatenate sub-generators in catalog order (Remove_Unused, Inline_Variable, Guard_Clause, Simplify_Boolean, Extract_Function), each in source order by node start position
     - Ensure every `apply` goes through the AST Editor `safeApply` wrapper
     - _Requirements: 12.1, 12.2, 12.5_
@@ -176,7 +176,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 11. Implement the Evaluator
-  - [~] 11.1 Implement metric computation
+  - [x] 11.1 Implement metric computation
     - Per function (including nested functions, methods, arrow functions), excluding bodies of nested functions: cyclomatic complexity, max nesting depth, function length (inclusive line span)
     - Whole-file duplicated code (blocks of at least 3 whitespace-normalized identical statements, count statements in every occurrence after the first) and unused code (reuse the Task 4.1 classifier)
     - Sum each Metric across all functions
