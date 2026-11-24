@@ -366,7 +366,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
 - [~] 18. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 19. Implement the Apply flow
+- [x] 19. Implement the Apply flow
   - [x] 19.1 Implement the apply pipeline
     - Strict order: freshness check (byte-equal to original Position) → Relevant_Test_File run on the Position to write (300 s timeout) → write via temp file and atomic rename
     - Support "Apply best line" (final Position, move count L) and "Apply up to selected move" (`sourceAfter` of index i, move count i + 1); "Reject" leaves file untouched
@@ -381,11 +381,11 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Property 59: Apply disk-freshness guard**
     - **Validates: Requirements 21.5**
 
-  - [~] 19.4 Write property test for apply test-outcome gating
+  - [x] 19.4 Write property test for apply test-outcome gating
     - **Property 60: Apply test-outcome gating**
     - **Validates: Requirements 21.7, 21.8**
 
-  - [~] 19.5 Write unit tests for apply edge cases
+  - [x] 19.5 Write unit tests for apply edge cases
     - Reject leaves the file byte-identical; simulated write I/O error leaves original content and reports "write failed"
     - _Requirements: 21.4, 21.9_
 
@@ -394,15 +394,15 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Eval bar scale (clamp to [originalScore, 0], label to 1 decimal), move navigation (previous, next, jump to end, disabled states), no-textual-change detection, line diff, metrics change formatting and marks (`improved`/`worsened`/`unchanged` by text/symbol), missing-metrics `"unavailable"` handling, blunder log view-model with empty-message indicator, move list formatting
     - _Requirements: 17.2, 17.3, 18.1, 18.2, 18.3, 18.4, 18.5, 18.6, 18.7, 18.8, 18.9, 19.1, 19.3, 19.4, 19.5, 19.6, 20.1, 20.2, 20.3, 20.4_
 
-  - [~] 20.2 Write property test for eval bar clamping and rounding
+  - [x] 20.2 Write property test for eval bar clamping and rounding
     - **Property 51: Eval bar scale clamping and rounding**
     - **Validates: Requirements 17.3**
 
-  - [~] 20.3 Write property test for move navigation logic
+  - [x] 20.3 Write property test for move navigation logic
     - **Property 52: Move navigation index logic**
     - **Validates: Requirements 18.3, 18.4, 18.5, 18.6, 18.7, 18.8**
 
-  - [~] 20.4 Write property test for no-textual-change detection
+  - [x] 20.4 Write property test for no-textual-change detection
     - **Property 53: No-textual-change detection**
     - **Validates: Requirements 18.9**
 
