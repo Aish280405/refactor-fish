@@ -389,7 +389,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Reject leaves the file byte-identical; simulated write I/O error leaves original content and reports "write failed"
     - _Requirements: 21.4, 21.9_
 
-- [ ] 20. Implement shared UI view-model logic (`packages/ui-core`)
+- [x] 20. Implement shared UI view-model logic (`packages/ui-core`)
   - [x] 20.1 Implement pure view-model modules
     - Eval bar scale (clamp to [originalScore, 0], label to 1 decimal), move navigation (previous, next, jump to end, disabled states), no-textual-change detection, line diff, metrics change formatting and marks (`improved`/`worsened`/`unchanged` by text/symbol), missing-metrics `"unavailable"` handling, blunder log view-model with empty-message indicator, move list formatting
     - _Requirements: 17.2, 17.3, 18.1, 18.2, 18.3, 18.4, 18.5, 18.6, 18.7, 18.8, 18.9, 19.1, 19.3, 19.4, 19.5, 19.6, 20.1, 20.2, 20.3, 20.4_
@@ -406,15 +406,15 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - **Property 53: No-textual-change detection**
     - **Validates: Requirements 18.9**
 
-  - [~] 20.5 Write property test for metrics change formatting and marks
+  - [x] 20.5 Write property test for metrics change formatting and marks
     - **Property 54: Metrics change formatting and mark derivation**
     - **Validates: Requirements 19.4, 19.5**
 
-  - [~] 20.6 Write property test for missing-metrics placeholders
+  - [x] 20.6 Write property test for missing-metrics placeholders
     - **Property 55: Missing-metrics placeholder handling**
     - **Validates: Requirements 19.6**
 
-  - [~] 20.7 Write property test for Blunder log empty-message indicator
+  - [x] 20.7 Write property test for Blunder log empty-message indicator
     - **Property 56: Blunder log empty-message indicator**
     - **Validates: Requirements 20.3**
 
@@ -423,7 +423,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
     - Parse `analyze <file>` and `--depth`; reject missing argument (usage on stderr), missing file (names path), non-`.ts`/`.tsx` extension, parse errors (path, line, column), and depth other than integer 3 or 4 (states accepted range); all exit non-zero without starting Engine or Web UI
     - _Requirements: 1.3, 1.4, 1.5, 1.8, 14.4, 14.5_
 
-  - [~] 21.2 Write property test for extension validation
+  - [x] 21.2 Write property test for extension validation
     - **Property 1: Extension validation**
     - **Validates: Requirements 1.4**
 
@@ -467,7 +467,7 @@ The plan builds bottom-up: shared types and the AST editor, then each Determinis
 
 - [ ] 23. Create the Sample Project and bundled Recording
   - [x] 23.1 Create the sample messy project
-    - `sample-project/` with a 50–300 line messy TypeScript Target_File containing at least one opportunity for each of the five Deterministic_Moves and at least one opportunity whose result breaks a test, plus a Vitest file where all tests pass with zero skipped
+    - `sample-project/` with a 50–300 line messy TypeScript Target_File containing at least one opportunity for each of the five Deterministic_Moves and at least one opportunity whose result breaks a test, plus a Vitest file where all tests  pass with zero skipped
     - _Requirements: 23.1, 23.2, 23.3, 23.4_
 
   - [~] 23.2 Generate and commit the bundled Recording
